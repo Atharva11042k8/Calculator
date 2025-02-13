@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A pen by Atharva</title>
+    <style>
+        /* CSS goes here */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .calculator {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            width: 300px;
+        }
+        .display {
+            background-color: #222;
+            color: #fff;
+            font-size: 2em;
+            text-align: right;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .buttons button {
+            padding: 20px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .buttons button:hover {
+            background-color: #ddd;
+        }
+        .buttons .equal {
+            background-color: #4CAF50;
+            color: #fff;
+            grid-column: span 2;
+        }
+        .buttons .equal:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="deleteDigit()">DEL</button>
+            <button onclick="display('%')">%</button>
+            <button onclick="display('*')">*</button>
+            <button onclick="display('7')">7</button>
+            <button onclick="display('8')">8</button>
+            <button onclick="display('9')">9</button>
+            <button onclick="display('-')">-</button>
+            <button onclick="display('4')">4</button>
+            <button onclick="display('5')">5</button>
+            <button onclick="display('6')">6</button>
+            <button onclick="display('+')">+</button>
+            <button onclick="display('1')">1</button>
+            <button onclick="display('2')">2</button>
+            <button onclick="display('3')">3</button>
+            <button onclick="display('/')">/</button>
+            <button class="equal" onclick="calculate()">=</button>
+            <button onclick="display('0')">0</button>
+            <button onclick="display('.')">.</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript goes here
+        function clearDisplay() {
+            document.getElementById('display').innerText = '0';
+        }
+
+        function deleteDigit() {
+            let display = document.getElementById('display').innerText;
+            if (display.length > 1) {
+                document.getElementById('display').innerText = display.slice(0, -1);
+            } else {
+                document.getElementById('display').innerText = '0';
+            }
+        }
+
+        function display(value) {
+            let display = document.getElementById('display').innerText;
+            if (display === '0') {
+                document.getElementById('display').innerText = value;
+            } else {
+                document.getElementById('display').innerText += value;
+            }
+        }
+
+        function calculate() {
+            let display = document.getElementById('display').innerText;
+            document.getElementById('display').innerText = eval(display);
+            
+        }
+    </script>
+</body>
+</html>
