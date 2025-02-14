@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A pen by Atharva</title>
+    <title>Calculator</title>
     <style>
         /* CSS goes here */
         body {
@@ -29,6 +29,8 @@
             padding: 10px;
             border-radius: 5px;
             margin-bottom: 20px;
+            overflow: hidden;
+            word-wrap: break-word;
         }
         .buttons {
             display: grid;
@@ -85,7 +87,6 @@
     </div>
 
     <script>
-        // JavaScript goes here
         function clearDisplay() {
             document.getElementById('display').innerText = '0';
         }
@@ -110,8 +111,16 @@
 
         function calculate() {
             let display = document.getElementById('display').innerText;
-            document.getElementById('display').innerText = eval(display);
-            
+
+            try {
+                if (display.includes('/0')) {
+                    document.getElementById('display').innerText = "Pappa la vichar aaplya";
+                } else {
+                    document.getElementById('display').innerText = eval(display);
+                }
+            } catch {
+                document.getElementById('display').innerText = "kahi pan";
+            }
         }
     </script>
 </body>
